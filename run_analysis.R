@@ -40,33 +40,42 @@ subjectdata <- rbind(subject_train, subject_test)
 mergeddata <- cbind(subjectdata, Y, X)
 
 ##2- Extracts only the measurements on the mean and standard deviation for each measurement
-tidydata <- mergeddata %>% select(subject, code, contains("mean"), contains("std"))
+auxtidydata <- mergeddata %>% select(subject, code, contains("mean"), contains("std"))
 ###Memory cleanup
 rm(mergeddata)
+rm(xdata)
+rm(ydata)
+rm(subjectdata)
+rm(subject_test)
+rm(x_test)
+rm(y_test)
+rm(subject_train)
+rm(x_train)
+rm(y_train)
 
 ##3- Uses descriptive activity names to name the activities in the data set.
-tidydata$code <- activities[tidydata$code, 2]
+auxtidydata$code <- activities[auxtidydata$code, 2]
 
 ##4- Desciptive name for activity column
-names(tidydata)[2] = "activity"
-names(tidydata)<-gsub("mean", "Mean", names(tidydata), ignore.case = TRUE)
-names(tidydata)<-gsub("std", "STD", names(tidydata), ignore.case = TRUE)
-names(tidydata)<-gsub("Freq", "Frequency", names(tidydata), ignore.case = TRUE)
-names(tidydata)<-gsub("angle", "Angle", names(tidydata))
-names(tidydata)<-gsub("gravity", "Gravity", names(tidydata))
-names(tidydata)<-gsub("Acc", "Accelerometer", names(tidydata))
-names(tidydata)<-gsub("Gyro", "Gyroscope", names(tidydata))
-names(tidydata)<-gsub("BodyBody", "Body", names(tidydata))
-names(tidydata)<-gsub("Mag", "Magnitude", names(tidydata))
-names(tidydata)<-gsub("^t", "Time", names(tidydata))
-names(tidydata)<-gsub("^f", "Frequency", names(tidydata))
-names(tidydata)<-gsub("tBody", "TimeBody", names(tidydata))
+names(auxtidydata)[2] = "activity"
+names(auxtidydata)<-gsub("mean", "Mean", names(tidydata), ignore.case = TRUE)
+names(auxtidydata)<-gsub("std", "STD", names(tidydata), ignore.case = TRUE)
+names(auxtidydata)<-gsub("Freq", "Frequency", names(tidydata), ignore.case = TRUE)
+names(auxtidydata)<-gsub("angle", "Angle", names(auxtidydata))
+names(auxtidydata)<-gsub("gravity", "Gravity", names(auxtidydata))
+names(auxtidydata)<-gsub("Acc", "Accelerometer", names(auxtidydata))
+names(auxtidydata)<-gsub("Gyro", "Gyroscope", names(auxtidydata))
+names(auxtidydata)<-gsub("BodyBody", "Body", names(auxtidydata))
+names(auxtidydata)<-gsub("Mag", "Magnitude", names(auxtidydata))
+names(auxtidydata)<-gsub("^t", "Time", names(auxtidydata))
+names(auxtidydata)<-gsub("^f", "Frequency", names(auxtidydata))
+names(auxtidydata)<-gsub("tBody", "TimeBody", names(auxtidydata))
 
 ##5- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-finaldata <- tidydata %>%
+tidydata <- auxtidydata %>%
     group_by(subject, activity) %>%
     summarise_all(list(mean))
-write.table(finaldata, "finaldata.txt", row.name=FALSE, quote = FALSE)
+write.table(tidydata, "tidydata.txt", row.name=FALSE, quote = FALSE)
 
 ##Data Visualization
-View(finaldata)
+View(tidydata)
