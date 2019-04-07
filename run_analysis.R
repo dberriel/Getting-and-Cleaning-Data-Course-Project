@@ -61,7 +61,6 @@ auxtidydata$code <- activities[auxtidydata$code, 2]
 names(auxtidydata)[2] = "activity"
 names(auxtidydata)<-gsub("mean", "Mean", names(tidydata), ignore.case = TRUE)
 names(auxtidydata)<-gsub("std", "STD", names(tidydata), ignore.case = TRUE)
-names(auxtidydata)<-gsub("Freq", "Frequency", names(tidydata), ignore.case = TRUE)
 names(auxtidydata)<-gsub("angle", "Angle", names(auxtidydata))
 names(auxtidydata)<-gsub("gravity", "Gravity", names(auxtidydata))
 names(auxtidydata)<-gsub("Acc", "Accelerometer", names(auxtidydata))
@@ -70,6 +69,7 @@ names(auxtidydata)<-gsub("BodyBody", "Body", names(auxtidydata))
 names(auxtidydata)<-gsub("Mag", "Magnitude", names(auxtidydata))
 names(auxtidydata)<-gsub("^t", "Time", names(auxtidydata))
 names(auxtidydata)<-gsub("^f", "Frequency", names(auxtidydata))
+names(auxtidydata)<-gsub("Freq", "Frequency", names(tidydata), ignore.case = TRUE)
 names(auxtidydata)<-gsub("tBody", "TimeBody", names(auxtidydata))
 
 ##5- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
