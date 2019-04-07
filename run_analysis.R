@@ -21,6 +21,9 @@ if (!file.exists("./data/UCI HAR Dataset")) {
 }
 
 ##Data sets
+###FEATURES AND ACTIVITIES
+features <- data.table::fread("./data/UCI HAR Dataset/features.txt", col.names = c("n","functions"))
+activities <- data.table::fread("UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
 ###TEST
 subject_test <- data.table::fread("./data/UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
 x_test <- data.table::fread("./data/UCI HAR Dataset/test/X_test.txt", col.names = features$functions)
@@ -29,15 +32,13 @@ y_test <- data.table::fread("./data/UCI HAR Dataset/test/y_test.txt", col.names 
 subject_train <- data.table::fread("./data/UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
 x_train <- data.table::fread("./data/UCI HAR Dataset/train/X_train.txt", col.names = features$functions)
 y_train <- data.table::fread("./data/UCI HAR Dataset/train/y_train.txt", col.names = "code")
-###FEATURES AND ACTIVITIES
-features <- data.table::fread("./data/UCI HAR Dataset/features.txt", col.names = c("n","functions"))
-activities <- data.table::fread("UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
+
 
 ##1- Merges the training and the test sets to create one data set.
 xdata <- rbind(x_train, x_test)
 ydata <- rbind(y_train, y_test)
 subjectdata <- rbind(subject_train, subject_test)
-mergeddata <- cbind(subjectdata, Y, X)
+mergeddata <- cbind(subjectdata, ydata, xdata)
 
 ##2- Extracts only the measurements on the mean and standard deviation for each measurement
 auxtidydata <- mergeddata %>% select(subject, code, contains("mean"), contains("std"))
