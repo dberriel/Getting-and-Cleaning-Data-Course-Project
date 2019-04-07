@@ -2,7 +2,7 @@
 
 This code book explain and represent the tidydata datata set on this space. On the README.md file you will find more details about the data set, why this is created, purpose and objective; and additional information related to the source data and experiment.
 ## Data Set (tidydata)
-The tidaydata is created using the run_analysis.r using R version 3.5.2 (2018-12-20) on Windows 10 and dplyr package version 0.8.0.1.
+The tidaydata is created using the run_analysis.r using R version 3.5.3 on Windows 10 and dplyr package version 0.8.0.1.
 On this .r script you will find the below steps in order to get the complete tidydata analysis created.
 ### Praparing and dowloading data and data sets creation
 Dataset downloaded and extracted under the folder called UCI HAR Dataset
