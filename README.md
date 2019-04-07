@@ -23,7 +23,7 @@ Here are the data for the project:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
 ## Tidy Data Set Creation
-The script run_analysis.R (created using R version 3.5.2 (2018-12-20)on Windows 10) should be used to create the tidy data (tidydata.txt) set based on the next steps:
+The script run_analysis.R (created using R version 3.5.3 on Windows 10) should be used to create the tidy data (tidydata.txt) set based on the next steps:
 - Download and make source data available
 - Merges the training and the test sets to create one data set.
 - Extracts only the measurements on the mean and standard deviation for each measurement.
