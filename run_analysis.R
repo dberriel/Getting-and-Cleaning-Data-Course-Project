@@ -23,7 +23,7 @@ if (!file.exists("./data/UCI HAR Dataset")) {
 ##Data sets
 ###FEATURES AND ACTIVITIES
 features <- data.table::fread("./data/UCI HAR Dataset/features.txt", col.names = c("n","functions"))
-activities <- data.table::fread("UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
+activities <- data.table::fread("./data/UCI HAR Dataset/UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
 ###TEST
 subject_test <- data.table::fread("./data/UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
 x_test <- data.table::fread("./data/UCI HAR Dataset/test/X_test.txt", col.names = features$functions)
