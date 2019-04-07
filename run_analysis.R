@@ -22,17 +22,17 @@ if (!file.exists("./data/UCI HAR Dataset")) {
 
 ##Data sets
 ###FEATURES AND ACTIVITIES
-features <- data.table::fread("./data/UCI HAR Dataset/features.txt", col.names = c("n","functions"))
-activities <- data.table::fread("./data/UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
-###TEST
-subject_test <- data.table::fread("./data/UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
-x_test <- data.table::fread("./data/UCI HAR Dataset/test/X_test.txt", col.names = features$functions)
-y_test <- data.table::fread("./data/UCI HAR Dataset/test/y_test.txt", col.names = "code")
-###TRAIN
-subject_train <- data.table::fread("./data/UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
-x_train <- data.table::fread("./data/UCI HAR Dataset/train/X_train.txt", col.names = features$functions)
-y_train <- data.table::fread("./data/UCI HAR Dataset/train/y_train.txt", col.names = "code")
+features <- read.table("./data/UCI HAR Dataset/features.txt", col.names = c("n","functions"))
+activities <- read.table("UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
 
+###TEST
+subject_test <- read.table("./data/UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
+x_test <- read.table("./data/UCI HAR Dataset/test/X_test.txt", col.names = features$functions)
+y_test <- read.table("./data/UCI HAR Dataset/test/y_test.txt", col.names = "code")
+###TRAIN
+subject_train <- read.table("./data/UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
+x_train <- read.table("./data/UCI HAR Dataset/train/X_train.txt", col.names = features$functions)
+y_train <- read.table("./data/UCI HAR Dataset/train/y_train.txt", col.names = "code")
 
 ##1- Merges the training and the test sets to create one data set.
 xdata <- rbind(x_train, x_test)
@@ -59,8 +59,8 @@ auxtidydata$code <- activities[auxtidydata$code, 2]
 
 ##4- Desciptive name for activity column
 names(auxtidydata)[2] = "activity"
-names(auxtidydata)<-gsub("mean", "Mean", names(tidydata), ignore.case = TRUE)
-names(auxtidydata)<-gsub("std", "STD", names(tidydata), ignore.case = TRUE)
+names(auxtidydata)<-gsub("mean", "Mean", names(auxtidydata), ignore.case = TRUE)
+names(auxtidydata)<-gsub("std", "STD", names(auxtidydata), ignore.case = TRUE)
 names(auxtidydata)<-gsub("angle", "Angle", names(auxtidydata))
 names(auxtidydata)<-gsub("gravity", "Gravity", names(auxtidydata))
 names(auxtidydata)<-gsub("Acc", "Accelerometer", names(auxtidydata))
@@ -69,7 +69,7 @@ names(auxtidydata)<-gsub("BodyBody", "Body", names(auxtidydata))
 names(auxtidydata)<-gsub("Mag", "Magnitude", names(auxtidydata))
 names(auxtidydata)<-gsub("^t", "Time", names(auxtidydata))
 names(auxtidydata)<-gsub("^f", "Frequency", names(auxtidydata))
-names(auxtidydata)<-gsub("Freq", "Frequency", names(tidydata), ignore.case = TRUE)
+names(auxtidydata)<-gsub("Freq", "Frequency", names(auxtidydata), ignore.case = TRUE)
 names(auxtidydata)<-gsub("tBody", "TimeBody", names(auxtidydata))
 
 ##5- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
