@@ -47,7 +47,7 @@ Each activity code is replaced by the descriptive value from activities data set
 - All Mag in column's name replaced by Magnitude
 - All start with character f in column's name replaced by Frequency
 - All start with character t in column's name replaced by Time
-- All Freq in column's name replaced by Frequency
+- All MeanFreq in column's name replaced by MeanFrequency
 - All mean in column's name replaced by Mean
 - All std in column's name replaced by STD
 - All angle in column's name replaced by Angle
